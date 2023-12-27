@@ -38,6 +38,7 @@ public class Auctioneer {
           Thread.sleep(1000);
           System.out.println("offers found until now: " + space.count(MyTemplate));
         }
+        space.in(auctiontuple); //fine asta -> rimuovo la tupla AuctionTuple dal tuple space
         ITuple[] offerts = space.ing(MyTemplate);
         Double max = -1.0;
         String vincitore = null;
@@ -61,7 +62,6 @@ public class Auctioneer {
         } else {
           System.out.println(msg +"senza nessuna offerta!");
         }
-        space.in(auctiontuple); //fine asta -> rimuovo la tupla AuctionTuple dal tuple space
         System.out.println("Auction terminata!");
         System.out.println("waiting for next auction...");
         Thread.sleep(10000);
