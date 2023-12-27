@@ -1,0 +1,1 @@
+java -cp '.:lights.jar' $*

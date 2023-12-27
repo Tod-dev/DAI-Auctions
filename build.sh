@@ -1,0 +1,1 @@
+javac -cp '.:lights.jar' *.java

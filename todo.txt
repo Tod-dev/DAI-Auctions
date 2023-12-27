@@ -1,0 +1,2 @@
+aste tra agenti usando il tuple space per proporre vendite, fare le offerte, e con un agente banditore che regola le cose 
+(e evita tuple ingannevoli o errate secondo le regole dell'asta) e seleziona il vincitore.
