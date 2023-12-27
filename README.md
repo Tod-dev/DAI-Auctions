@@ -1,16 +1,16 @@
 # DAI-Auctions
 Auctions between agents using lighTS Tuple Space.
-## SIMULATION:
-Launch simulation (1 Auctioneer and 3 Agents) (Only for MACOS)
+### 1: build all classes
+```
+./build.sh
+```
+## SIMULATION (Only for MACOS):
+Launch simulation (1 Auctioneer and 3 Agents)
 ```
 ./simulation 
 ```
 ## INSTRUCTIONS:
 ### (all parameters are optional)
-1: build all classes
-```
-./build.sh
-```
 2: launch the tuple space rmi registry
 ```
 ./run.sh RemoteTupleSpace <tupleSpaceName>
