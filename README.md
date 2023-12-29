@@ -10,7 +10,7 @@ Launch simulation (1 Auctioneer and 2 Agents)
 ./simulation.sh <type>
 ```
 default type is **EnglishAuction**, you can use **DutchAuction** too!
-## INSTRUCTIONS TO LAUNCH SINGLE AGENTES:
+## INSTRUCTIONS TO LAUNCH SINGLE AGENTS:
 ### (all parameters are optional)
 2: launch the tuple space rmi registry
 ```
