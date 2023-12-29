@@ -7,10 +7,10 @@ Auctions between agents using lighTS Tuple Space.
 ## SIMULATION (Only for MACOS):
 Launch simulation (1 Auctioneer and 2 Agents)
 ```
-./simulation <type>
+./simulation.sh <type>
 ```
-default type is EnglishAuction, you can use DutchAuction too!
-## INSTRUCTIONS:
+default type is **EnglishAuction**, you can use **DutchAuction** too!
+## INSTRUCTIONS TO LAUNCH SINGLE AGENTES:
 ### (all parameters are optional)
 2: launch the tuple space rmi registry
 ```
