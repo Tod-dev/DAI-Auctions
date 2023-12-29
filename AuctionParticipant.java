@@ -32,9 +32,9 @@ public class AuctionParticipant {
       DutchAuctionTuple asta = DutchAuctionTuple.fromTuple(auction);
       System.out.println("Auction Found: " + auction);
       //Create an OffertTuple with offert = offertaAttuale and put it in the tuple space with certain probability
-      //hp probability = 0.5 of making an offert
+      //hp probability = 0.2 of making an offert
       Double prob = Math.random();
-      if (prob < 0.5){
+      if (prob < 0.2){
         Double offert = asta.offertaAttuale;
         OffertTuple offerta = new OffertTuple(asta.oggettoAsta, asta.venditore, name, offert);
         ITuple offerttuple = offerta.getTuple();

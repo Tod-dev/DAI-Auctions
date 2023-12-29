@@ -47,7 +47,6 @@ public class Auctioneer {
         System.out.println("Dutch Auction STARTED");
         DutchAuctionTuple asta = (DutchAuctionTuple) getRandomAuctionTuple("Dutch");
         asta.print();
-        ITuple myTemplateDutchAuction = DutchAuctionTuple.getTemplateTypes();
         ITuple auctiontuple = asta.getTuple();
         System.out.println(auctiontuple);
         space.out(auctiontuple);
@@ -67,10 +66,10 @@ public class Auctioneer {
             sold = true;
             break;
           }
+          space.ing(DutchAuctionTuple.getTemplateTypes());
           //decrement
           asta.decrementa();
           //update tuple
-          space.ing(myTemplateDutchAuction);
           space.out(asta.getTuple());
           System.out.println("Decrement!!! -> new price: " + asta.offertaAttuale);
         }
@@ -79,10 +78,12 @@ public class Auctioneer {
         }else{
           System.out.println("Dutch Auction terminated WITH SUCCESS!\n" + ot.acquirente + " has won the auction with an offert of " + ot.offerta);
         }
-        //remove auction tuple
-        space.ing(myTemplateDutchAuction);
-        //remove all the other offerts
+        //remove auction tuple from tuple space of type dutch
+        space.ing(DutchAuctionTuple.getTemplateTypes());
+        //remove all the other possible offerts
         space.ing(MyTemplate);
+        System.out.println("waiting for next auction...");
+        Thread.sleep(10000);
       }
     }
 
