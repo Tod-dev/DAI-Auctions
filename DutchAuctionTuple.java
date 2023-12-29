@@ -22,7 +22,7 @@ public class DutchAuctionTuple extends AuctionTuple {
     }
 
     public void decrementa(){
-      this.offertaAttuale = Math.round((this.offertaAttuale - this.offertaAttuale*this.decrementoPerc)*100.0)/100.0;
+      this.offertaAttuale = Math.round((this.offertaAttuale - this.offertaIniziale*this.decrementoPerc)*100.0)/100.0;
     }
 
     public static ITuple getTemplateTypes() {

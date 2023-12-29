@@ -34,7 +34,7 @@ public class AuctionParticipant {
       //Create an OffertTuple with offert = offertaAttuale and put it in the tuple space with certain probability
       //hp probability = 0.2 of making an offert
       Double prob = Math.random();
-      if (prob < 0.2){
+      if (prob < 0.1){
         Double offert = asta.offertaAttuale;
         OffertTuple offerta = new OffertTuple(asta.oggettoAsta, asta.venditore, name, offert);
         ITuple offerttuple = offerta.getTuple();
@@ -57,16 +57,19 @@ public class AuctionParticipant {
       AuctionTuple asta = AuctionTuple.fromTuple(auction);
       System.out.print("Auction Found: ");
       asta.print();
-      //Create an OffertTuple and put it in the tuple space (hp: offerta è +- 20% offerta minima)
-      Double offertamin20perc = asta.offertaMinima*0.2;
-      Double offert = asta.offertaMinima + Math.random()*offertamin20perc - Math.random()*offertamin20perc ; 
+      //Create an OffertTuple and put it in the tuple space (hp: offerta è +10% -80% offerta minima)
+      Double offert = asta.offertaMinima + Math.random()*( asta.offertaMinima*0.1) - Math.random()*(asta.offertaMinima*0.8) ; 
       offert = Math.round(offert*100.0)/100.0; // arrotondo a 2 cifre decimali
       OffertTuple offerta = new OffertTuple(asta.oggettoAsta, asta.venditore, name, offert);
       ITuple offerttuple = offerta.getTuple();
       // System.out.println("offerttuple: " + offerttuple);
-      space.out(offerttuple);
-      System.out.println("new offert created: " +offerttuple);
-      Thread.sleep(400);
+      //make the offert only wih certain probability
+      Double prob = Math.random();
+      if (prob < 0.5){
+        space.out(offerttuple);
+        System.out.println("new offert created: " +offerttuple);
+      }
+      Thread.sleep(600);
     }
   }
 }

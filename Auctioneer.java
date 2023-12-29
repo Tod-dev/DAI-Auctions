@@ -21,7 +21,7 @@ public class Auctioneer {
       int random = (int) (Math.random() * oggetti.length);
       if (type.equals("Dutch")){
         Double offertaMinima = prezzi[random];
-        Double offertaIniziale = offertaMinima*10;
+        Double offertaIniziale = offertaMinima*2;
         Double decrementoPerc = 0.2;
         int secondiDecremento = 4;
         return new DutchAuctionTuple(oggetti[random], venditori[random], offertaMinima, offertaIniziale, decrementoPerc, secondiDecremento,offertaIniziale);
