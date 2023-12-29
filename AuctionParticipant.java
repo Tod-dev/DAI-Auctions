@@ -44,7 +44,7 @@ public class AuctionParticipant {
       }else{
         System.out.println("no offert created");
       }
-      Thread.sleep(3000);
+      Thread.sleep(2000);
     }
   }
   public static void englishAuction(IRemoteTupleSpace space, String name)throws Exception {
@@ -65,7 +65,7 @@ public class AuctionParticipant {
       // System.out.println("offerttuple: " + offerttuple);
       //make the offert only wih certain probability
       Double prob = Math.random();
-      if (prob < 0.5){
+      if (prob < 0.8){
         space.out(offerttuple);
         System.out.println("new offert created: " +offerttuple);
       }
