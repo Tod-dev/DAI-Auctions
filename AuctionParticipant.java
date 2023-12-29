@@ -4,40 +4,68 @@ import lights.interfaces.*;
 public class AuctionParticipant {
   private static IRemoteTupleSpace getSpace(String[] args) throws Exception {
     String name;
-    if (args.length == 2)
-      name = args[1];
+    if (args.length >= 1)
+      name = args[0];
     else
       name = "TupleSpace";
     return (IRemoteTupleSpace) Naming.lookup("//localhost/" + name);
   }
   public static void main(String[] args) throws Exception {
     IRemoteTupleSpace space = getSpace(args);
-    System.out.println(space.getName());
-
-    String name = (args.length == 2) ? args[0] :  "Participant"+Math.random();
+    System.out.println("space -> "+ space.getName());
+    String name = (args.length >= 2) ? args[1] :  "Participant"+Math.random();
     System.out.println("AuctionParticipant STARTED: " + name);
-
-    //read an AuctionTuple from the tuple space
-    ITuple MyTemplate = new Tuple()
-      .add(new Field().setType(String.class)) //oggettoAsta
-      .add(new Field().setType(String.class)) //venditore
-      .add(new Field().setType(Double.class)); //offertaMinima
+    if (args.length >= 3 && args[2].equals("DutchAuction")){
+      System.out.println("DutchAuction");
+      dutchAuction(space, name);
+    }else{
+      System.out.println("EnglishAuction");
+      englishAuction(space, name);
+    }
+  }
+  public static void dutchAuction(IRemoteTupleSpace space, String name) throws Exception {
+    //read an DutchAuctionTuple from the tuple space
+    ITuple MyTemplateDutch = DutchAuctionTuple.getTemplateTypes();
 
     while(true){
-      ITuple auction = space.rd(MyTemplate); // blocking
-      AuctionTuple asta = AuctionTuple.fromTuple(auction);
-      System.out.println("Asta trovata: ");
-      asta.print();
+      ITuple auction = space.rd(MyTemplateDutch); // blocking
+      DutchAuctionTuple asta = DutchAuctionTuple.fromTuple(auction);
+      System.out.println("Auction Found: " + auction);
+      //Create an OffertTuple with offert = offertaAttuale and put it in the tuple space with certain probability
+      //hp probability = 0.5 of making an offert
+      Double prob = Math.random();
+      if (prob < 0.5){
+        Double offert = asta.offertaAttuale;
+        OffertTuple offerta = new OffertTuple(asta.oggettoAsta, asta.venditore, name, offert);
+        ITuple offerttuple = offerta.getTuple();
+        // System.out.println("offerttuple: " + offerttuple);
+        space.out(offerttuple);
+        System.out.println("new offert created: " +offerttuple);
+      }else{
+        System.out.println("no offert created");
+      }
+      Thread.sleep(3000);
+    }
+  }
+  public static void englishAuction(IRemoteTupleSpace space, String name)throws Exception {
 
+    //read an AuctionTuple from the tuple space
+    ITuple MyTemplateEnglish = AuctionTuple.getTemplateTypes();
+    
+    while(true){
+      ITuple auction = space.rd(MyTemplateEnglish); // blocking
+      AuctionTuple asta = AuctionTuple.fromTuple(auction);
+      System.out.print("Auction Found: ");
+      asta.print();
       //Create an OffertTuple and put it in the tuple space (hp: offerta è +- 20% offerta minima)
       Double offertamin20perc = asta.offertaMinima*0.2;
       Double offert = asta.offertaMinima + Math.random()*offertamin20perc - Math.random()*offertamin20perc ; 
       offert = Math.round(offert*100.0)/100.0; // arrotondo a 2 cifre decimali
       OffertTuple offerta = new OffertTuple(asta.oggettoAsta, asta.venditore, name, offert);
       ITuple offerttuple = offerta.getTuple();
-      System.out.println("offerttuple: " + offerttuple);
+      // System.out.println("offerttuple: " + offerttuple);
       space.out(offerttuple);
-      System.out.println("offerttuple inserita nel tuple space");
+      System.out.println("new offert created: " +offerttuple);
       Thread.sleep(400);
     }
   }

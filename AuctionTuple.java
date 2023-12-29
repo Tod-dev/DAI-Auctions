@@ -35,7 +35,14 @@ public class AuctionTuple {
         );
     }
 
+    public static ITuple getTemplateTypes() {
+        return new Tuple()
+            .add(new Field().setType(String.class))
+            .add(new Field().setType(String.class))
+            .add(new Field().setType(Double.class));
+    }
+
     public void print() {
-        System.out.println("Oggetto in vendita: " + this.oggettoAsta + " venduto da " + this.venditore + " al prezzo minimo di  " + this.offertaMinima);
+        System.out.println("Item for sale : " + this.oggettoAsta + " sold by " + this.venditore + " at the minimum price of  " + this.offertaMinima);
     }
 }

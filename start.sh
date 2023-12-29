@@ -1,2 +1,2 @@
 javac -cp '.:lights.jar' *.java
-java -cp '.:lights.jar' $*
+java -cp '.:lights.jar' "$@"

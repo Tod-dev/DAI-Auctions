@@ -31,6 +31,6 @@ public class OffertTuple {
     }
 
     public void print() {
-        System.out.println("Nuova offerrta per l'oggetto in vendita: " + oggettoAsta + " venduto da " + venditore + " all'acquirente " + acquirente + " al prezzo di " + offerta);
+        System.out.println("New offert for the item on sale: " + oggettoAsta + " sold by" + venditore + " to the buyer " + acquirente + " at the price of " + offerta);
     }
 }

@@ -111,7 +111,7 @@ public class RemoteTupleSpace extends UnicastRemoteObject implements IRemoteTupl
 		}
 		
         Naming.rebind("//localhost/" + name, remoteTupleSpace);
-        System.out.println("Remote TupleSpace registered on //localhost:1099/TupleSpace.");
+        System.out.println("Remote TupleSpace registered on //localhost:1099/"+name);
 		
 	}
 
